@@ -1,8 +1,8 @@
-const BlogList = ({ posts }) => (
+const BlogList = ({ posts, likePost }) => (
   <div>
   {
-    _.map(posts, (post, key) => (
-      <BlogItem key={key} {...post}/>
+    _.map(posts, (post) => (
+      <BlogItem key={post.id} like={() => likePost(post.id)} {...post} />
     ))
   }
   </div>
@@ -27,26 +27,6 @@ BlogList.defaultProps = {
 
 BlogList.propTypes = {
   posts: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      meta: React.PropTypes.shape({
-        author: React.PropTypes.string.isRequired,
-        createdAt: React.PropTypes.oneOfType([
-          React.PropTypes.string,
-          React.PropTypes.instanceOf(Date)
-        ]),
-        updatedAt: React.PropTypes.oneOfType([
-          React.PropTypes.string,
-          React.PropTypes.instanceOf(Date)
-        ]),
-        likes: PropTypes.number
-      }),
-      image: React.PropTypes.shape({
-        src: React.PropTypes.string,
-        alt: React.PropTypes.string.isRequired,
-        width: React.PropTypes.string,
-        height: React.PropTypes.string
-      }),
-      text: React.PropTypes.string.isRequired
-    })
+    React.PropTypes.shape(BlogItem.propTypes)
   )
 };

@@ -1,13 +1,13 @@
-const BlogItem = ({ image, text, meta }) => (
+const BlogItem = ({ image, text, meta, like }) => (
   <div>
     <Image {...image}/>
     <ul>
       <li><TextBox text={text}/></li>
       <li><TextBox text={meta.author}/></li>
-      <li><TextBox text={dateFormat(meta.createdAt, 'DD MMM HH:mm')}/></li>
-      <li><TextBox text={dateFormat(meta.updatedAt, 'DD MMM HH:mm')}/></li>
+      <li><TextBox text={dateFormat(meta.createdAt)}/></li>
+      <li><TextBox text={dateFormat(meta.updatedAt)}/></li>
     </ul>      
-    <Like likes={meta.likes}/>
+    <Like likes={meta.likes} action={like}/>
   </div>
 );
 
@@ -39,11 +39,6 @@ BlogItem.propTypes = {
     ]),
     likes: PropTypes.number
   }),
-  image: React.PropTypes.shape({
-    src: React.PropTypes.string,
-    alt: React.PropTypes.string.isRequired,
-    width: React.PropTypes.string,
-    height: React.PropTypes.string
-  }),
+  image: React.PropTypes.shape(Image.propTypes),
   text: React.PropTypes.string.isRequired
 };
