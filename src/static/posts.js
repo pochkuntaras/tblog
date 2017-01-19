@@ -1,8 +1,4 @@
-const { DOM, PropTypes } = React;
-const { bind } = _;
-const { update } = React.addons;
-
-var posts = [
+export const staticPosts = [
   {
     id: 2238,
     meta: {
@@ -51,53 +47,3 @@ var posts = [
     text: 'Wikipedia'
   }
 ];
-
-function dateFormat(date) {
-  return moment(date).format('DD MMM HH:mm');
-}
-
-class BlogPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { posts };
-  }
-
-  likePost(id) {
-    const { posts } = this.state;
-
-    var index = _.findIndex(posts, { id });
-    var likes = posts[index].meta.likes || 0;
-
-    this.setState({
-      posts: update(posts, {
-        [index]: {
-          meta: {
-            likes: {
-              $set: likes + 1
-            }
-          }
-        }
-      })
-    });
-  }
-
-  render() {
-    var columns = _.map(this.state.posts, (post) => [post.text, post.meta.likes || 0]);
-
-    return(
-      <div>
-        <BlogList
-          posts={this.state.posts}
-          likePost={(id) => this.likePost(id)}
-        />
-        <PieChart columns={columns}/>
-      </div>
-    )
-  }
-}
-
-ReactDOM.render(
-  React.createElement(BlogPage),
-  document.getElementById('app')
-);

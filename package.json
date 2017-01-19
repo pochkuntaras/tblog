@@ -1,0 +1,41 @@
+{
+  "name": "tblog",
+  "version": "1.0.0",
+  "description": "Blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pochkuntaras/tblog.git"
+  },
+  "author": "Taras Pochkun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pochkuntaras/tblog/issues"
+  },
+  "homepage": "https://github.com/pochkuntaras/tblog#readme",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "eslint": "^3.13.1",
+    "eslint-plugin-destructuring": "^2.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-react": "^6.9.0",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "c3": "^0.4.11",
+    "lodash": "^4.17.4",
+    "moment": "^2.17.1",
+    "react": "^15.4.2",
+    "react-addons-update": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}

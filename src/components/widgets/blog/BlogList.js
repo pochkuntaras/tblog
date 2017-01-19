@@ -1,3 +1,7 @@
+import React, { PropTypes } from 'react';
+import _ from 'lodash';
+import BlogItem from 'components/widgets/blog/BlogItem';
+
 const BlogList = ({ posts, likePost }) => (
   <div>
   {
@@ -26,7 +30,10 @@ BlogList.defaultProps = {
 };
 
 BlogList.propTypes = {
-  posts: React.PropTypes.arrayOf(
-    React.PropTypes.shape(BlogItem.propTypes)
-  )
+  posts: PropTypes.arrayOf(
+    PropTypes.shape(BlogItem.propTypes)
+  ),
+  likePost: PropTypes.func.isRequired
 };
+
+export default BlogList;
