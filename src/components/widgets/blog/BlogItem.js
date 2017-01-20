@@ -6,9 +6,9 @@ import Like from 'components/widgets/blog/elements/Like';
 import { dateFormat } from 'helpers/date';
 
 const BlogItem = ({ image, text, meta, like }) => (
-  <div>
+  <div className="blog-item">
     <Image {...image}/>
-    <ul>
+    <ul className="blog-item__text">
       <li><TextBox text={text}/></li>
       <li><TextBox text={meta.author}/></li>
       <li><TextBox text={dateFormat(meta.createdAt)}/></li>

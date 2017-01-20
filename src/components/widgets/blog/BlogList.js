@@ -3,7 +3,7 @@ import _ from 'lodash';
 import BlogItem from 'components/widgets/blog/BlogItem';
 
 const BlogList = ({ posts, likePost }) => (
-  <div>
+  <div className="blog-list">
   {
     _.map(posts, (post) => (
       <BlogItem key={post.id} like={() => likePost(post.id)} {...post} />

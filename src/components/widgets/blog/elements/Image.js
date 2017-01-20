@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react';
 
 const Image = ({ src, alt, width, height }) => (
-  <img src={src} alt={alt} style={{ width, height }} />
+  <img
+   src={src} alt={alt} style={{ width, height }}
+   className="blog-item__image"
+  />
 );
 
 Image.defaultProps = {

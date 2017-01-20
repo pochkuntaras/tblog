@@ -8,7 +8,7 @@ export const staticPosts = [
       likes: 8
     },
     image: {
-      src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Yandex.svg/200px-Yandex.svg.png',
+      src: 'dist/images/yandex.png',
       alt: 'Yandex',
       width: '136px',
       height: '60px'
@@ -23,7 +23,7 @@ export const staticPosts = [
       updatedAt: '2016-12-08 08:40:40'
     },
     image: {
-      src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/220px-Google_2015_logo.svg.png',
+      src: 'dist/images/google.png',
       alt: 'Google',
       width: '136px',
       height: '46px'
@@ -39,7 +39,7 @@ export const staticPosts = [
       likes: 2
     },
     image: {
-      src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
+      src: 'dist/images/wikipedia.png',
       alt: 'Wikipedia',
       width: '100px',
       height: '100px'
