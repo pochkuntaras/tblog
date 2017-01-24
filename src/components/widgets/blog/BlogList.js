@@ -1,5 +1,9 @@
+import React, { PropTypes } from 'react';
+import _ from 'lodash';
+import BlogItem from 'components/widgets/blog/BlogItem';
+
 const BlogList = ({ posts, likePost }) => (
-  <div>
+  <div className="blog-list">
   {
     _.map(posts, (post) => (
       <BlogItem key={post.id} like={() => likePost(post.id)} {...post} />
@@ -26,7 +30,10 @@ BlogList.defaultProps = {
 };
 
 BlogList.propTypes = {
-  posts: React.PropTypes.arrayOf(
-    React.PropTypes.shape(BlogItem.propTypes)
-  )
+  posts: PropTypes.arrayOf(
+    PropTypes.shape(BlogItem.propTypes)
+  ),
+  likePost: PropTypes.func.isRequired
 };
+
+export default BlogList;
