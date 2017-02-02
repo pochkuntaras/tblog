@@ -2,14 +2,19 @@ import React, { PropTypes } from 'react';
 import Image from 'components/widgets/blog/elements/Image';
 import TextBox from 'components/widgets/blog/elements/TextBox';
 import Like from 'components/widgets/blog/elements/Like';
-
+import Link from 'components/elements/Link';
+import { postPath } from 'helpers/routes';
 import { dateFormat } from 'helpers/date';
 
-const BlogItem = ({ image, text, meta, like }) => (
+const BlogItem = ({ id, image, text, meta, like }) => (
   <div className="blog-item">
     <Image {...image}/>
     <ul className="blog-item__text">
-      <li><TextBox text={text}/></li>
+      <li>
+        <Link to={postPath(id)}>
+          <TextBox text={text}/>
+        </ Link>
+      </li>
       <li><TextBox text={meta.author}/></li>
       <li><TextBox text={dateFormat(meta.createdAt)}/></li>
       <li><TextBox text={dateFormat(meta.updatedAt)}/></li>
@@ -34,6 +39,7 @@ BlogItem.defaultProps = {
 };
 
 BlogItem.propTypes = {
+  id: PropTypes.number.isRequired,
   meta: PropTypes.shape({
     author: PropTypes.string.isRequired,
     createdAt: PropTypes.oneOfType([

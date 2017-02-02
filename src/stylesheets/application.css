@@ -67,3 +67,46 @@
 .like__button {
   vertical-align: middle;
 }
+
+.header {
+  margin: 0 0 20px 0;
+  padding: 10px;
+  display: block;
+  background-color: #3399ff;
+  color: white;
+}
+
+.footer {
+  margin: 20px 0 0 0;
+  padding: 10px;
+  display: block;
+  background-color: #3399ff;
+  color: white;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+}
+
+.link:visited {
+  color: black;
+}
+
+.link:hover,
+.link:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
+.link_white {
+  color: white;
+}
+
+.link_white:visited {
+  color: white;
+}
+
+.post {
+  overflow: hidden;
+}

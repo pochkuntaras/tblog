@@ -1,15 +1,15 @@
 import React from 'react';
 import update from 'react-addons-update';
+import request from 'superagent';
 import _ from 'lodash';
-import { staticPosts as posts } from 'static/posts';
 import BlogList from 'components/widgets/blog/BlogList';
-import PieChart from 'components/widgets/PieChart';
+import PieChart from 'components/widgets/blog/elements/PieChart';
 
 class BlogPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { posts };
+    this.state = { posts: [] };
   }
 
   likePost(id) {
@@ -28,6 +28,20 @@ class BlogPage extends React.Component {
         }
       })
     });
+  }
+
+  componentDidMount() {
+    this.fetchPosts();
+  }
+
+  fetchPosts() {
+    request.get(
+      'http://localhost:3004',
+      {},
+      (error, result) => (
+        this.setState({ posts: result.body })
+      )
+    );
   }
 
   render() {
