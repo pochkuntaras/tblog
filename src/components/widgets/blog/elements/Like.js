@@ -3,7 +3,9 @@ import React, { PropTypes } from 'react';
 const Like = ({ likes, action }) => (
   <div className="like">
     <span className="like__count">Count: {likes} </span>
-    <button className="button button_blue like__button" onClick={action}>like</button>
+    <button
+     className="button button_blue like__button"
+     onClick={action}>like</button>
   </div>
 );
 
