@@ -1,63 +1,29 @@
-import React from 'react';
-import update from 'react-addons-update';
-import request from 'superagent';
-import _ from 'lodash';
+import React, { PropTypes } from 'react';
+import { map } from 'lodash/collection';
+import BlogItem from 'components/widgets/blog/BlogItem';
 import BlogList from 'components/widgets/blog/BlogList';
 import PieChart from 'components/widgets/blog/elements/PieChart';
 
-class BlogPage extends React.Component {
-  constructor(props) {
-    super(props);
+const BlogPage = ({ posts, like }) => {
+  const columns = map(posts,
+     (post) => [post.text, post.meta.likes || 0]);
 
-    this.state = { posts: [] };
-  }
+  return (
+    <div>
+      <BlogList
+        posts={posts}
+        likePost={like}
+      />
+      <PieChart columns={columns}/>
+    </div>
+  );
+};
 
-  likePost(id) {
-    const { posts } = this.state;
-    const index = _.findIndex(posts, { id });
-    const likes = posts[index].meta.likes || 0;
-
-    this.setState({
-      posts: update(posts, {
-        [index]: {
-          meta: {
-            likes: {
-              $set: likes + 1
-            }
-          }
-        }
-      })
-    });
-  }
-
-  componentDidMount() {
-    this.fetchPosts();
-  }
-
-  fetchPosts() {
-    request.get(
-      'http://localhost:3004',
-      {},
-      (error, result) => (
-        this.setState({ posts: result.body })
-      )
-    );
-  }
-
-  render() {
-    const columns = _.map(this.state.posts,
-       (post) => [post.text, post.meta.likes || 0]);
-
-    return (
-      <div>
-        <BlogList
-          posts={this.state.posts}
-          likePost={(id) => this.likePost(id)}
-        />
-        <PieChart columns={columns}/>
-      </div>
-    );
-  }
-}
+BlogPage.propTypes = {
+  posts: PropTypes.arrayOf(
+    PropTypes.shape(BlogItem.propTypes)
+  ),
+  like: PropTypes.func
+};
 
 export default BlogPage;

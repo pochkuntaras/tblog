@@ -19,7 +19,7 @@ const BlogItem = ({ id, image, text, meta, like }) => (
       <li><TextBox text={dateFormat(meta.createdAt)}/></li>
       <li><TextBox text={dateFormat(meta.updatedAt)}/></li>
     </ul>
-    <Like likes={meta.likes} action={like}/>
+    <Like id={id} likes={meta.likes} action={like}/>
   </div>
 );
 
