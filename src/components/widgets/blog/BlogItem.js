@@ -6,13 +6,13 @@ import Link from 'components/elements/Link';
 import { postPath } from 'helpers/routes';
 import { dateFormat } from 'helpers/date';
 
-const BlogItem = ({ id, image, text, meta, like }) => (
+const BlogItem = ({ id, image, title, meta, like }) => (
   <div className="blog-item">
-    <Image {...image}/>
+    <Image alt={title} {...image}/>
     <ul className="blog-item__text">
       <li>
         <Link to={postPath(id)}>
-          <TextBox text={text}/>
+          <TextBox text={title}/>
         </ Link>
       </li>
       <li><TextBox text={meta.author}/></li>
@@ -53,7 +53,7 @@ BlogItem.propTypes = {
     likes: PropTypes.number
   }),
   image: PropTypes.shape(Image.propTypes),
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   like: PropTypes.func
 };
 
