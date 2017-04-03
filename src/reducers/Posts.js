@@ -1,12 +1,16 @@
-import { get, assign} from 'lodash/object';
+import { get, assign } from 'lodash/object';
+import { map } from 'lodash/collection';
 import { cloneDeep } from 'lodash/lang';
 import { findIndex } from 'lodash/array';
+import { camelizeKeys } from 'humps';
 import * as types from 'constants/actionsTypes/PostsActionsTypes';
 
 const initialState = {
   isFetching: false,
   error: false,
-  entries: []
+  entries: [],
+  meta: {},
+  columns: []
 };
 
 export default function(state = initialState, action) {
@@ -15,8 +19,18 @@ export default function(state = initialState, action) {
       return assign({}, initialState, { isFetching: true });
     case types.FETCH_POSTS_ERROR:
       return assign({}, initialState, { error: true });
-    case types.FETCH_POSTS_SUCCESS:
-      return assign({}, initialState, { entries: action.response });
+    case types.FETCH_POSTS_SUCCESS: {
+      const posts   = action.response.posts;
+      const meta    = action.response.meta;
+
+      const columns = map(posts, (post) =>
+        [`${post.id}/${post.title}`, post.meta.likes || 0]
+      );
+
+      const result = camelizeKeys({ entries: posts, meta, columns });
+
+      return assign({}, initialState, result);
+    }
     case types.FETCH_POSTS_LIKE: {
       const entries = cloneDeep(state.entries);
       const index   = findIndex(entries, { id: action.id });

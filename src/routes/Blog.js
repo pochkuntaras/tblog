@@ -1,5 +1,5 @@
 import MainLayout from 'components/layouts/MainLayout';
-import { postPath } from 'helpers/routes';
+import { postPath, postsPath } from 'helpers/routes';
 import { fetchPosts } from 'actions/Posts';
 import { fetchPost } from 'actions/Post';
 
@@ -22,10 +22,19 @@ const PostRoute = {
   }
 };
 
+const PostsRoute = {
+  path: postsPath(),
+  component: PostsContainer,
+  prepareData: (store, query, params) => {
+    store.dispatch(fetchPosts(params.page));
+  }
+};
+
 export default {
   component: MainLayout,
   childRoutes: [
     Index,
-    PostRoute
+    PostRoute,
+    PostsRoute
   ]
 };

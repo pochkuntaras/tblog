@@ -1,29 +1,39 @@
 import React, { PropTypes } from 'react';
-import { map } from 'lodash/collection';
 import BlogItem from 'components/widgets/blog/BlogItem';
 import BlogList from 'components/widgets/blog/BlogList';
 import PieChart from 'components/widgets/blog/elements/PieChart';
+import ReactPaginate from 'react-paginate';
+import { postsPath } from 'helpers/routes';
+import history from 'helpers/history';
 
-const BlogPage = ({ posts, like }) => {
-  const columns = map(posts,
-     (post) => [post.text, post.meta.likes || 0]);
-
-  return (
-    <div>
-      <BlogList
-        posts={posts}
-        likePost={like}
-      />
-      <PieChart columns={columns}/>
-    </div>
-  );
-};
+const BlogPage = ({ posts, columns, like, pageCount }) => (
+  <div>
+    <BlogList posts={posts} likePost={like} />
+    <PieChart columns={columns} />
+    <ReactPaginate
+       previousLabel={'previous'}
+       pageCount={pageCount}
+       marginPagesDisplayed={2}
+       pageRangeDisplayed={5}
+       onPageChange={(page) => history.push(postsPath(page.selected + 1))}
+       hrefBuilder={(page) => postsPath(page)}
+       containerClassName={'pagination'}
+       pageClassName={'pagination__page'}
+       previousClassName={'pagination__page'}
+       nextClassName={'pagination__page'}
+       activeClassName={'pagination__page_active'}
+       disabledClassName={'pagination__page_disabled'}
+       />
+  </div>
+);
 
 BlogPage.propTypes = {
   posts: PropTypes.arrayOf(
     PropTypes.shape(BlogItem.propTypes)
   ),
-  like: PropTypes.func
+  like: PropTypes.func,
+  pageCount: PropTypes.number,
+  columns: PropTypes.array
 };
 
 export default BlogPage;

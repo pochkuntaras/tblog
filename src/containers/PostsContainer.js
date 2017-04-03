@@ -6,7 +6,9 @@ import { flowRight } from 'lodash';
 const stateToProps = (state) => ({
   posts: state.posts.entries,
   isFetching: state.posts.isFetching,
-  error: state.posts.error
+  error: state.posts.error,
+  pageCount: state.posts.meta.totalPages,
+  columns: state.posts.columns
 });
 
 const actionsToProps = (dispatch) => ({
