@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, match, browserHistory } from 'react-router';
 import routes from 'routes';
-import store from 'store';
+import createStore from 'store';
 import { Provider } from 'react-redux';
 import prepareData from 'helpers/prepareData';
 import DevTools from 'containers/DevTools';
+
+const store = createStore(window.__INITIAL_STATE__);
 
 function historyCallback(location) {
   match({ location, routes}, (error, redirect, state) => {
@@ -29,7 +31,10 @@ const App = () => (
 
 ReactDOM.render(
   <DevTools store={store} />,
-  document.getElementById('dev-tools')
+  document.getElementById('dev-tools'),
+  () => {
+    delete window.__INITIAL_STATE__;
+  }
 );
 
 export default App;
