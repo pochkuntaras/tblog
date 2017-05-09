@@ -3,7 +3,7 @@ import Image from 'components/widgets/blog/elements/Image';
 import TextBox from 'components/widgets/blog/elements/TextBox';
 import Like from 'components/widgets/blog/elements/Like';
 import Link from 'components/elements/Link';
-import { postPath } from 'helpers/routes';
+import { postPath, editPostPath } from 'helpers/routes';
 import { dateFormat } from 'helpers/date';
 
 const BlogItem = ({ id, image, title, meta, like }) => (
@@ -13,13 +13,16 @@ const BlogItem = ({ id, image, title, meta, like }) => (
       <li>
         <Link to={postPath(id)}>
           <TextBox text={title}/>
-        </ Link>
+        </Link>
       </li>
       <li><TextBox text={meta.author}/></li>
       <li><TextBox text={dateFormat(meta.createdAt)}/></li>
       <li><TextBox text={dateFormat(meta.updatedAt)}/></li>
     </ul>
     <Like id={id} likes={meta.likes} action={like}/>
+    <Link to={editPostPath(id)} className='button button_blue'>
+      <TextBox text='Edit' />
+    </Link>
   </div>
 );
 
