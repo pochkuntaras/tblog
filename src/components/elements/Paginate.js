@@ -17,10 +17,11 @@ const Paginate = ({ pageCount }) => (
      nextClassName={'pagination__page'}
      activeClassName={'pagination__page_active'}
      disabledClassName={'pagination__page_disabled'}
-     />
+  />
 );
+
 Paginate.propTypes = {
-  pageCount: PropTypes.number.required
+  pageCount: PropTypes.number
 };
 
 export default Paginate;

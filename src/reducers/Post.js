@@ -4,6 +4,7 @@ import * as types from 'constants/actionsTypes/PostActionsTypes';
 
 const initialState = {
   isFetching: false,
+  isUpdating: false,
   error: false,
   entry: null
 };
@@ -23,6 +24,12 @@ export default function(state = initialState, action) {
 
       return assign({}, state, { entry });
     }
+    case types.UPDATE_POST_REQUEST:
+      return assign({}, initialState, { isUpdating: true });
+    case types.UPDATE_POST_ERROR:
+      return assign({}, initialState, { error: true });
+    case types.UPDATE_POST_SUCCESS:
+      return assign({}, initialState, { entry: action.response.post });
     default:
       return state;
   }
